@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_matches"
+        android:icon="@drawable/group_61"
+        android:title="@string/matches" />
+
+    <item
+        android:id="@+id/navigation_top_players"
+        android:icon="@drawable/group_67"
+        android:title="@string/top_players" />
+
+    <item
+        android:id="@+id/navigation_videos"
+        android:icon="@drawable/group_65"
+        android:title="@string/viedos" />
+
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/group_95"
+        android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/group_63"
+        android:title="@string/settings" />
+
+</menu>
