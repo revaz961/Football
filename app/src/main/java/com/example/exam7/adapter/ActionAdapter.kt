@@ -13,6 +13,8 @@ import com.example.exam7.extension.load
 import com.example.exam7.extension.textColor
 import com.example.exam7.extension.visible
 import com.example.exam7.fragment.Inflate
+import com.example.exam7.model.GoalType
+import com.example.exam7.model.MatchActionType
 import com.example.exam7.model.TeamAction
 
 typealias GetActionTime = () -> String
@@ -54,7 +56,7 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
             }
         }
 
-        fun initTeam1(binding: Team1ItemLayoutBinding) {
+        private fun initTeam1(binding: Team1ItemLayoutBinding) {
             binding.ivPlayer1Image.load(
                 model.action?.player1?.playerImage!!,
                 R.drawable.dinamo,
@@ -65,27 +67,38 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
 
             var actionType = "${actionTime()}' "
             when (model.actionType) {
-                1 -> {
-                    if (model.action?.goalType == 1) {
-                        actionType += "Goals by"
-                        binding.ivActionImage1.setImageResource(R.drawable.path_44)
-                    } else {
-                        actionType += "Own Goal"
-                        binding.tvActionType.textColor(R.color.red)
-                        binding.ivActionImage1.setImageResource(R.drawable.path_46)
+
+                MatchActionType.GOAL.type -> {
+
+                    when (model.action?.goalType) {
+
+                        GoalType.GOAL.type -> {
+                            actionType += "Goals by"
+                            binding.ivActionImage1.setImageResource(R.drawable.path_44)
+                        }
+
+                        GoalType.OWN_GOAL.type -> {
+                            actionType += "Own Goal"
+                            binding.tvActionType.textColor(R.color.red)
+                            binding.ivActionImage1.setImageResource(R.drawable.path_46)
+                        }
                     }
                 }
-                2 -> {
+
+                MatchActionType.YELLOW_CARD.type -> {
                     actionType += "Tripping"
                     binding.ivActionImage1.setImageResource(R.drawable.path_81)
                 }
-                3 -> {
+
+                MatchActionType.RED_CARD.type -> {
                     actionType += "Tripping"
                     binding.ivActionImage1.setImageResource(R.drawable.path_81)
                     binding.ivActionImage1.setColorFilter(Color.rgb(255, 0, 0))
                 }
-                4 -> {
+
+                MatchActionType.SUBSTITUTION.type -> {
                     actionType += "Substitution"
+
                     binding.ivActionImage1.setImageResource(R.drawable.group_56)
                     binding.ivActionImage2.visible(true)
 
@@ -110,29 +123,42 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
             )
 
             binding.tvPlayer1Name.text = model.action?.player1?.playerName!!
+
             var actionType = "${actionTime()}' "
+
             when (model.actionType) {
-                1 -> {
-                    if (model.action?.goalType == 1) {
-                        actionType += "Goals by"
-                        binding.ivActionImage1.setImageResource(R.drawable.path_44)
-                    } else {
-                        actionType += "Own Goal"
-                        binding.ivActionImage1.setImageResource(R.drawable.path_46)
-                        binding.tvActionType.textColor(R.color.red)
+
+                MatchActionType.GOAL.type -> {
+
+                    when (model.action?.goalType) {
+
+                        GoalType.GOAL.type -> {
+                            actionType += "Goals by"
+                            binding.ivActionImage1.setImageResource(R.drawable.path_44)
+                        }
+
+                        GoalType.OWN_GOAL.type -> {
+                            actionType += "Own Goal"
+                            binding.ivActionImage1.setImageResource(R.drawable.path_46)
+                            binding.tvActionType.textColor(R.color.red)
+                        }
                     }
                 }
-                2 -> {
+
+                MatchActionType.YELLOW_CARD.type -> {
                     actionType += "Tripping"
                     binding.ivActionImage1.setImageResource(R.drawable.path_81)
                 }
-                3 -> {
+
+                MatchActionType.RED_CARD.type -> {
                     actionType += "Tripping"
                     binding.ivActionImage1.setImageResource(R.drawable.path_81)
                     binding.ivActionImage1.setColorFilter(Color.rgb(255, 0, 0))
                 }
-                4 -> {
+
+                MatchActionType.SUBSTITUTION.type -> {
                     actionType += "Substitution"
+
                     binding.ivActionImage1.setImageResource(R.drawable.group_56)
                     binding.ivActionImage2.visible(true)
 
