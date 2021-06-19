@@ -16,6 +16,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     private val viewModelClass: Class<VM>,
     private val isShared: Boolean = false
 ) : Fragment() {
+
     private var _binding: VB? = null
     val binding get() = _binding!!
 

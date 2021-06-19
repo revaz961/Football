@@ -46,20 +46,42 @@
             android:textSize="10sp" />
 
         <TextView
-            android:id="@+id/tvPlayerName"
+            android:id="@+id/tvPlayer1Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_gravity="end"
             android:textAlignment="viewEnd"
             android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvPlayer2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_dark_text"
+            android:layout_gravity="end"
+            android:textAlignment="viewEnd"
+            android:textSize="12sp" />
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
     <ImageView
-        android:id="@+id/ivPlayerImage"
+        android:id="@+id/ivPlayer1Image"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_gravity="center"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/ivPlayer2Image"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="20dp" />
+
+    </FrameLayout>
 
 </LinearLayout>

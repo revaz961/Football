@@ -1,6 +1,6 @@
 package com.example.exam7.model
 
-data class MainModel(
+data class FootballMatch(
     val resultCode: Int?,
     val match: Match?
 )

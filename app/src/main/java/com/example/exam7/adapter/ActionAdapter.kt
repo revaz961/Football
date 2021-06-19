@@ -22,6 +22,7 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
     RecyclerView.Adapter<ActionAdapter<VB>.ViewHolder>() {
 
     lateinit var actionTime: GetActionTime
+
     private val items = mutableListOf<TeamAction>()
 
     fun setItems(list: List<TeamAction>?) {
@@ -54,13 +55,13 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
         }
 
         fun initTeam1(binding: Team1ItemLayoutBinding) {
-            binding.ivPlayerImage.load(
+            binding.ivPlayer1Image.load(
                 model.action?.player1?.playerImage!!,
                 R.drawable.dinamo,
                 R.drawable.dinamo
             )
 
-            binding.tvPlayerName.text = model.action?.player1?.playerName!!
+            binding.tvPlayer1Name.text = model.action?.player1?.playerName!!
 
             var actionType = "${actionTime()}' "
             when (model.actionType) {
@@ -87,6 +88,14 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
                     actionType += "Substitution"
                     binding.ivActionImage1.setImageResource(R.drawable.group_56)
                     binding.ivActionImage2.visible(true)
+
+                    binding.tvPlayer2Name.text = model.action?.player2?.playerName!!
+
+                    binding.ivPlayer2Image.load(
+                        model.action?.player2?.playerImage,
+                        R.drawable.team2,
+                        R.drawable.team2
+                    )
                 }
             }
             binding.tvActionType.text = actionType
@@ -94,13 +103,13 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
 
         private fun initTeam2(binding: Team2ItemLayoutBinding) {
 
-            binding.ivPlayerImage.load(
+            binding.ivPlayer1Image.load(
                 model.action?.player1?.playerImage,
                 R.drawable.team2,
                 R.drawable.team2
             )
 
-            binding.tvPlayerName.text = model.action?.player1?.playerName!!
+            binding.tvPlayer1Name.text = model.action?.player1?.playerName!!
             var actionType = "${actionTime()}' "
             when (model.actionType) {
                 1 -> {
@@ -126,11 +135,17 @@ class ActionAdapter<VB : ViewBinding>(val inflate: Inflate<VB>) :
                     actionType += "Substitution"
                     binding.ivActionImage1.setImageResource(R.drawable.group_56)
                     binding.ivActionImage2.visible(true)
+
+                    binding.tvPlayer2Name.text = model.action?.player2?.playerName!!
+
+                    binding.ivPlayer2Image.load(
+                        model.action?.player2?.playerImage,
+                        R.drawable.dinamo,
+                        R.drawable.dinamo
+                    )
                 }
             }
             binding.tvActionType.text = actionType
-
-
         }
     }
 }

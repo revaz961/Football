@@ -1,12 +1,11 @@
 package com.example.exam7
 
-import android.util.Log.d
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exam7.adapter.ParentAdapter
 import com.example.exam7.databinding.FragmentMainBinding
 import com.example.exam7.extension.load
 import com.example.exam7.fragment.BaseFragment
-import com.example.exam7.model.MainModel
+import com.example.exam7.model.FootballMatch
 import com.example.exam7.model.Summary
 import com.example.exam7.viewmodel.MainViewModel
 import java.text.SimpleDateFormat
@@ -37,8 +36,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
         }
     }
 
-    private fun initView(model: MainModel) {
-        d("model", model.toString())
+    private fun initView(model: FootballMatch) {
+
         with(binding) {
 
             val match = model.match!!

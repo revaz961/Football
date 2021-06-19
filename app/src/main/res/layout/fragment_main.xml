@@ -139,10 +139,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_text"
-                app:layout_constraintTop_toBottomOf="@id/tvScore"
                 app:layout_constraintEnd_toEndOf="@id/tvScore"
                 app:layout_constraintStart_toStartOf="@id/tvScore"
-                />
+                app:layout_constraintTop_toBottomOf="@id/tvScore" />
 
             <ImageView
                 android:id="@+id/ivTeam2"
@@ -202,8 +201,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/statistic"
-                    android:textColor="@color/gray_text"
                     android:textAlignment="center"
+                    android:textColor="@color/gray_text"
                     android:textSize="12sp" />
 
                 <TextView
@@ -211,8 +210,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/line_up"
-                    android:textColor="@color/gray_text"
                     android:textAlignment="center"
+                    android:textColor="@color/gray_text"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -280,8 +279,8 @@
                     android:id="@+id/tvHalfScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
                     android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
                     android:text="3:2"
                     android:textColor="@color/gray_dark_text" />
             </FrameLayout>
@@ -290,10 +289,10 @@
                 android:id="@+id/rvMatch"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/flHalf"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flHalf" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -308,8 +307,8 @@
         android:layout_marginTop="18dp"
         android:background="@color/green_blue"
         app:itemIconTint="@color/white"
-        app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
 </FrameLayout>
