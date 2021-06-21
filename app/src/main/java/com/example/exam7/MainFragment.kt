@@ -1,13 +1,11 @@
 package com.example.exam7
 
-import android.util.Log.d
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exam7.adapter.ParentAdapter
 import com.example.exam7.databinding.FragmentMainBinding
 import com.example.exam7.extension.load
 import com.example.exam7.fragment.BaseFragment
 import com.example.exam7.model.FootballMatch
-import com.example.exam7.model.MatchActionType
 import com.example.exam7.model.Summary
 import com.example.exam7.viewmodel.MainViewModel
 import java.text.SimpleDateFormat
@@ -23,7 +21,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
 
     override fun start() {
         init()
-        d("enumcluss","${MatchActionType.GOAL.type}")
     }
 
     private fun init() {
