@@ -73,7 +73,7 @@ class MatchFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
 
     private fun initRecycler(list: List<Summary>) {
         adapter = MatchAdapter()
-        adapter.setItems(list)
+        adapter.addItems(list)
 
         binding.rvMatch.adapter = adapter
         binding.rvMatch.layoutManager = LinearLayoutManager(requireContext())

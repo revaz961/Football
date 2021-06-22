@@ -1,4 +1,4 @@
-package com.example.exam7.model
+package com.example.exam7.constants
 
 enum class GoalType(val type:Int) {
     GOAL(1),

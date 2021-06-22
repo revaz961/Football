@@ -1,4 +1,4 @@
-package com.example.exam7.model
+package com.example.exam7.constants
 
 import com.example.exam7.R
 
