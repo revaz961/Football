@@ -1,10 +1,11 @@
-package com.example.exam7
+package com.example.exam7.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.exam7.adapter.ParentAdapter
+import com.example.exam7.R
+import com.example.exam7.adapter.MatchAdapter
 import com.example.exam7.databinding.FragmentMainBinding
 import com.example.exam7.extension.load
-import com.example.exam7.fragment.BaseFragment
+import com.example.exam7.extension.toDateFormat
 import com.example.exam7.model.FootballMatch
 import com.example.exam7.model.Summary
 import com.example.exam7.viewmodel.MainViewModel
@@ -12,12 +13,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
+class MatchFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
     FragmentMainBinding::inflate,
     MainViewModel::class.java
 ) {
 
-    private lateinit var adapter: ParentAdapter
+    private lateinit var adapter: MatchAdapter
 
     override fun start() {
         init()
@@ -42,15 +43,15 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
 
             val match = model.match!!
 
-            tvDate.text = getDate(match.matchDate!!)
+            tvDate.text = match.matchDate?.toDateFormat("d MMMM yyyy")
 
             tvStadium.text = match.stadiumAdress
 
             val time = "${match.matchTime}'"
             tvTime.text = time
 
-            ivTeam1.load(match.team1?.teamImage!!, R.drawable.dinamo, R.drawable.dinamo)
-            ivTeam2.load(match.team2?.teamImage!!, R.drawable.group_61, R.drawable.group_61)
+            ivTeam1.load(match.team1?.teamImage!!)
+            ivTeam2.load(match.team2?.teamImage!!)
 
             tvTeam1.text = match.team1.teamName
             tvTeam2.text = match.team2.teamName
@@ -71,17 +72,11 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(
     }
 
     private fun initRecycler(list: List<Summary>) {
-        adapter = ParentAdapter()
+        adapter = MatchAdapter()
         adapter.setItems(list)
 
         binding.rvMatch.adapter = adapter
         binding.rvMatch.layoutManager = LinearLayoutManager(requireContext())
-    }
-
-    private fun getDate(millisecond: Long): String {
-        val date = Date(millisecond)
-        val format = SimpleDateFormat("d MMMM yyyy")
-        return format.format(date)
     }
 
     private fun observes() {

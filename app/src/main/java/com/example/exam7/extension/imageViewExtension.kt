@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.exam7.R
 
-fun ImageView.load(url: String?, placeholder:Int = R.drawable.path_8, error: Int= R.drawable.path_8) {
+fun ImageView.load(url: String?, placeholder:Int = R.drawable.image_not_found, error: Int= R.drawable.image_not_found) {
     Glide.with(this.context)
         .load(url?:"")
         .placeholder(placeholder)
