@@ -1,5 +1,5 @@
 package com.example.exam7.adapter.base
 
-interface Binder<T> {
+interface IBaseViewHolder<T> {
     fun bind(data:T)
 }
