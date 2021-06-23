@@ -1,23 +1,19 @@
 package com.example.exam7.adapter.base
 
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
+import com.example.exam7.model.Match
 
+typealias GetMatchInfo = () -> Match
 
 abstract class BaseAdapter<T>() :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<BaseViewHolder<T,ViewBinding>>() {
 
     protected val items = mutableListOf<T>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return setViewHolder(parent, viewType)
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as IBaseViewHolder<T>).bind(items[position])
+    override fun onBindViewHolder(holder: BaseViewHolder<T,ViewBinding>, position: Int) {
+        holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size
-
-    abstract fun setViewHolder(parent: ViewGroup, type: Int): RecyclerView.ViewHolder
 }

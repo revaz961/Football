@@ -3,9 +3,9 @@ package com.example.exam7.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.example.exam7.adapter.base.BaseAdapter
-import com.example.exam7.adapter.base.IBaseViewHolder
+import com.example.exam7.adapter.base.BaseViewHolder
 import com.example.exam7.databinding.MatchInfoLayoutBinding
 import com.example.exam7.databinding.ParentRecyclerItemLayoutBinding
 import com.example.exam7.extension.load
@@ -25,27 +25,27 @@ class MatchAdapter :
 
     lateinit var getMatchInfo: GetMatchInfo
 
-    override fun getItemCount() = items.size + 1
+    override fun getItemCount() = items.size
 
     fun addItems(items: List<Summary>) {
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
-            is MatchActionViewHolder -> holder.bind(items[position - 1])
-            is MatchInfoViewHolder -> holder.bind(getMatchInfo())
-        }
-    }
+//    override fun onBindViewHolder(holder: BaseViewHolder<*,ViewBinding>, position: Int) {
+//        when(holder){
+//            is MatchActionViewHolder -> holder.bind(items[position - 1])
+//            is MatchInfoViewHolder -> holder.bind(getMatchInfo())
+//        }
+//    }
 
 
     override fun getItemViewType(position: Int) =
-        if (position == 0) MATCH_INFO_TYPE else MATCH_ACTION_TYPE
+        MATCH_ACTION_TYPE
 
 
-    override fun setViewHolder(parent: ViewGroup, type: Int): RecyclerView.ViewHolder {
-        return when (type) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Summary,ViewBinding> {
+        return when (viewType) {
             MATCH_ACTION_TYPE ->
                 MatchActionViewHolder(
                     ParentRecyclerItemLayoutBinding.inflate(
@@ -54,19 +54,12 @@ class MatchAdapter :
                         false
                     )
                 )
-            MATCH_INFO_TYPE -> MatchInfoViewHolder(
-                MatchInfoLayoutBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
-                )
-            )
             else -> throw Exception("invalid type")
         }
     }
 
     inner class MatchActionViewHolder(private val binding: ParentRecyclerItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root), IBaseViewHolder<Summary> {
+        BaseViewHolder<Summary,ParentRecyclerItemLayoutBinding>(binding) {
         override fun bind(data: Summary) {
             binding.rvTeam1.adapter = TeamAdapter().apply {
                 actionTime = { data.actionTime!! }
@@ -84,7 +77,7 @@ class MatchAdapter :
     }
 
     inner class MatchInfoViewHolder(private val binding: MatchInfoLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root), IBaseViewHolder<Match> {
+        BaseViewHolder<Match,MatchInfoLayoutBinding>(binding) {
         override fun bind(data: Match) {
             with(binding) {
 

@@ -3,10 +3,10 @@ package com.example.exam7.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.example.exam7.R
 import com.example.exam7.adapter.base.BaseAdapter
-import com.example.exam7.adapter.base.IBaseViewHolder
+import com.example.exam7.adapter.base.BaseViewHolder
 import com.example.exam7.databinding.Team1ItemLayoutBinding
 import com.example.exam7.databinding.Team2ItemLayoutBinding
 import com.example.exam7.extension.load
@@ -35,8 +35,11 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
         }
     }
 
-    override fun setViewHolder(parent: ViewGroup, type: Int): RecyclerView.ViewHolder {
-        return when (type) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<TeamAction, ViewBinding> {
+        return when (viewType) {
             TEAM1_TYPE -> Team1ViewHolder(
                 Team1ItemLayoutBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -62,7 +65,7 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
     }
 
     inner class Team1ViewHolder(private val binding: Team1ItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root), IBaseViewHolder<TeamAction> {
+        BaseViewHolder<TeamAction, Team1ItemLayoutBinding>(binding) {
         override fun bind(data: TeamAction) {
             binding.ivPlayer1Image.load(
                 data.action?.player1?.playerImage!!
@@ -104,7 +107,7 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
                 MatchActionType.SUBSTITUTION.type -> {
                     actionType += "Substitution"
 
-                    with(binding){
+                    with(binding) {
                         ivActionImage1.setImageResource(R.drawable.group_56)
                         ivActionImage2.visible(true)
 
@@ -123,7 +126,7 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
     }
 
     inner class Team2ViewHolder(private val binding: Team2ItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root), IBaseViewHolder<TeamAction> {
+        BaseViewHolder<TeamAction, Team2ItemLayoutBinding>(binding) {
         override fun bind(data: TeamAction) {
 
             binding.ivPlayer1Image.load(
@@ -167,7 +170,7 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
                 MatchActionType.SUBSTITUTION.type -> {
                     actionType += "Substitution"
 
-                    with(binding){
+                    with(binding) {
                         ivActionImage1.setImageResource(R.drawable.group_56)
                         ivActionImage2.visible(true)
 
@@ -183,4 +186,6 @@ class TeamAdapter : BaseAdapter<TeamAction>() {
             binding.tvActionType.text = actionType
         }
     }
+
+
 }
